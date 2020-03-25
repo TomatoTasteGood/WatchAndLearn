@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Canvas Tutorial</title>
+    <script type="text/javascript">
+        var sum = new Image();
+        var moon = new Image();
+        var earth = new Image();
+        
+        function init(){
+            sun.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
+            moon.src = 'https://mdn.mozillademos.org/files/1443/Canvas_moon.png';
+            earth.src = 'https://mdn.mozillademos.org/files/1429/Canvas_earth.png';
+            window.requestAnimationFrame(draw);
+        }
+        
+        function draw(){
+            var canvas = document.getElementById("canvas");
+            if(canvas.getContext){
+                var ctx = canvas.getContext("2d");
+            ctx.globalCompositeOperation = "destination-over";
+            ctx.clearRect(0,0,300,300);
+                
+        }
+    
+    
+        
+    </script>
+</head>
+<body onload="draw();">
+    <canvas id="canvas" width="300" height="300"></canvas>
+</body>
+</html>
