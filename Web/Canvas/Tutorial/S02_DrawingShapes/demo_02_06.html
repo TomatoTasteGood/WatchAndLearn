@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Canvas Tutorial</title>
+        <script type="text/javascript">
+            function draw(){
+                var canvas = document.getElementById("canvas");
+                if(canvas.getContext){
+                    var ctx = canvas.getContext("2d");
+                    roundedRect(ctx, 12, 12, 150, 150, 15);
+                    roundedRect(ctx,19,19,150,150,9);
+                    roundedRect(ctx,53,53,49,33,10);
+                }
+            }
+            function roundedRect(ctx, x, y, width, height, radius){
+                ctx.beginPath();
+                ctx.moveTo(x,y+radius);
+                ctx.lineTo(x,y+height-radius);
+                ctx.quadraticCurveTo(x,y+height,x+radius,y+height);
+                ctx.lineTo(x+width-radius,y+height);
+                ctx.quadraticCurveTo(x+width,y+height,x+width,y+height-radius);
+                ctx.lineTo(x+width,y+radius);
+                ctx.quadraticCurveTo(x+width,y,x+width-radius,y);
+                ctx.lineTo(x+radius,y);
+                ctx.quadraticCurveTo(x,y,x,y+radius);
+                ctx.stroke();
+            }
+        </script>
+    </head>
+    <body onload="draw();">
+        <canvas id="canvas" width="150" height="150"></canvas>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Canvas Tutorial</title>
+        <script type="text/javascript">
+            function draw(){
+                var canvas = document.getElementById("canvas");
+                if(canvas.getContext){
+                    var ctx = canvas.getContext("2d");
+                    // xy
+                    ctx.beginPath();
+                    ctx.strokeRect(0,0,900,900);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(25,25);
+                    ctx.lineTo(25,875);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(25,450);
+                    ctx.lineTo(875,450);
+                    ctx.stroke();
+                    ctx.save()
+                    //
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = "green"
+                    ctx.translate(25,450)
+                    for(let i=0;i<85000;i++){
+                        x = i/100;
+                        
+                        y = Math.sin(x)*100
+                        x_v = x;
+                        y_v = y;
+                        ctx.lineTo(x_v,y_v);
+                    }
+                    ctx.stroke();
+
+
+
+                    }
+                }
+            
+        </script>
+    </head>
+    <body onload="draw();">
+        <canvas id="canvas" width="900" height="900"></canvas>
+    </body>
+</html>
+
+

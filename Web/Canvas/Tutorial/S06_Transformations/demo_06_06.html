@@ -1,0 +1,78 @@
+<html>
+    <head>
+        
+    </head>
+    <!-- <body onload="draw();"> -->
+    <body>
+        <canvas id="Wave" width="500" height="500"></canvas>
+        <script type="text/javascript">
+            var i = 0;
+            var last_x = 0;
+            var last_y = 0;
+            var x = 0;
+            var y = 0;
+            var list_x = new Array();
+            var list_y = new Array();
+            var NUM_LIST_MAX = 500;
+            init();
+            
+
+            function init(){
+                let canvas = document.getElementById("Wave");
+                let ctx = canvas.getContext("2d");
+                draw(ctx);
+            }
+            function draw(ctx){
+                requestAnimationFrame(function step(){
+                    wavePlot(ctx);
+                    requestAnimationFrame(step);
+                })
+            }
+            function wavePlot(ctx){
+                ctx.save();
+                i = i+1;
+                x = i;
+                y = Math.sin(i/10)*100;
+                if(list_x.length<=NUM_LIST_MAX){
+                    list_x.push(x);
+                    list_y.push(y);
+                }
+                else{
+                    list_x.shift();
+                    list_y.shift();
+                    list_x.push(x);
+                    list_y.push(y);
+                }
+                listDataPlot(ctx, list_x, list_y);
+                //ctx.translate(0,250);
+                //ctx.beginPath();
+                //ctx.moveTo(last_x,last_y)
+                //ctx.lineTo(i,Math.sin(i/10)*100);
+                //last_x = i;
+                //last_y = Math.sin(i/10)*100;
+                //ctx.stroke();
+                //ctx.restore();
+            }
+            function listDataPlot(ctx, x_array, y_array){
+                ctx.save();
+                ctx.clearRect(0,0,500,500);
+                ctx.strokeRect(0,0,500,500);
+                ctx.translate(0,250);
+                ctx.beginPath();
+                
+                ctx.moveTo(0,0);
+                for(let index=0; index<x_array.length; index++){
+                    ctx.clearRect(10,-240,400,100);
+                    ctx.lineTo(index,y_array[index]);
+                    ctx.font="20px serif";
+                    ctx.strokeText('x: '+index.toString()+' y:'+y_array[index].toString(),20,-200);
+                }
+                ctx.stroke();
+                ctx.restore();
+            }
+
+
+        </script>
+
+    </body>
+</html>

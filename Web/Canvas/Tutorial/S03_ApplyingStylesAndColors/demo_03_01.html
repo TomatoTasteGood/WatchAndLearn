@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Canvas Tutorial</title>
+        <script type="text/javascript">
+            function draw(){
+                var canvas = document.getElementById("canvas");
+                if(canvas.getContext){
+                    var ctx = canvas.getContext("2d");
+                    for (let i=0;i<6;i++){
+                        for(let j=0;j<6;j++){
+                            ctx.strokeStyle = 'rgb('+Math.floor(255-42.5*i)+','+Math.floor(255-42.5*j)+',0)';
+                            ctx.beginPath();
+                            ctx.arc(12.5+j*25,12.5+i*25,10,0,Math.PI*2,true);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body onload="draw();">
+        <canvas id="canvas" width="150" height="150"></canvas>
+    </body>
+</html>
+
+
